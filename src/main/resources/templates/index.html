@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/lyout">
+    <head>
+        <title>Springboot</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  th:href="@{/materialize/css/materialize.min.css}" media="screen,projection"/>
+
+    </head>
+    <body>
+        <th:block th:include="navbar"></th:block>
+        <h4>Lista de Eventos</h4>
+        <table class="container">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Local</th>
+                    <th>Data</th>
+                    <th>Horario</th>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="evento : ${eventos}">
+                    <td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>
+                    <td><span th:text="${evento.local}"></span></td>
+                    <td><span th:text="${evento.data}"></span></td>
+                    <td><span th:text="${evento.horario}"></span></td>
+                    <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.codigo)).build()}">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    <script type="text/javascript" src="materialize/js/materialize.min.js" th:href="@{materialize/js/materialize.min.js}"></script>
+
+    </body>
+</html>
