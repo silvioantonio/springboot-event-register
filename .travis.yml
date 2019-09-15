@@ -1,4 +1,6 @@
 language: java
-before_install:
-
-git update-index --chmod=+x mvnw
+jdk:
+- oraclejdk8
+install:
+- mvn -N io.takari:maven:wrapper
+- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
